@@ -11,7 +11,7 @@ import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 const app = express();
 const PORT = 3000;
 
-const JWT_SECRET = process.env.JWT_SECRET || 'civic-connect-jwt-secret-key-2026';
+const JWT_SECRET = process.env.JWT_SECRET || 'cityresolve-a-smart-civic-issue-management-platform-jwt-secret-key-2026';
 
 app.use(express.json({ limit: '10mb' }));
 app.use(passport.initialize());
@@ -95,7 +95,7 @@ async function initDatabase() {
   const SQL = await initSqlJs();
   db = new SQL.Database();
 
-  // 1. Create tables as requested in Civic Connect specification
+  // 1. Create tables as requested in CityResolve-A-Smart-Civic-Issue-Management-Platform specification
   const schemaQueries = `
     CREATE TABLE IF NOT EXISTS users (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -202,7 +202,7 @@ async function initDatabase() {
     (4, 4, 'pending', 'in_progress', 'Electrician team assigned to replace faulty transformer junction fuses.', DATETIME('now', '-18 hours'));
   `);
 
-  console.log('Civic Connect SQL Database initialized successfully with Users & Departments.');
+  console.log('CityResolve-A-Smart-Civic-Issue-Management-Platform SQL Database initialized successfully with Users & Departments.');
   setupPassportStrategy();
 }
 
@@ -289,7 +289,7 @@ function setupPassportStrategy() {
 
 // 1. Health check
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', app: 'Civic Connect', timestamp: new Date().toISOString() });
+  res.json({ status: 'ok', app: 'CityResolve-A-Smart-Civic-Issue-Management-Platform', timestamp: new Date().toISOString() });
 });
 
 // PASSPORT GOOGLE OAUTH ROUTES
@@ -321,7 +321,7 @@ app.get('/auth/google/callback', (req, res, next) => {
     return res.send(`
       <!DOCTYPE html>
       <html>
-        <head><title>Google Sign-In - Civic Connect</title></head>
+        <head><title>Google Sign-In - CityResolve-A-Smart-Civic-Issue-Management-Platform</title></head>
         <body style="background:#0f172a;color:#fff;font-family:sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;">
           <div style="text-align:center;background:#1e293b;padding:2rem;border-radius:1rem;border:1px solid #334155;max-width:400px;">
             <h2 style="color:#3b82f6;">Google Sign-In Complete!</h2>
@@ -368,7 +368,7 @@ app.get('/auth/google/callback', (req, res, next) => {
         <body style="background:#0f172a;color:#fff;font-family:sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;">
           <div style="text-align:center;background:#1e293b;padding:2rem;border-radius:1rem;border:1px solid #334155;max-width:400px;">
             <h2 style="color:#3b82f6;">Welcome, ${user.name}!</h2>
-            <p style="font-size:14px;color:#94a3b8;">Authentication complete. Returning to Civic Connect dashboard...</p>
+            <p style="font-size:14px;color:#94a3b8;">Authentication complete. Returning to CityResolve-A-Smart-Civic-Issue-Management-Platform dashboard...</p>
           </div>
           <script>
             const token = "${token}";
@@ -572,7 +572,7 @@ app.get(['/auth/callback', '/auth/callback/'], (req, res) => {
     <!DOCTYPE html>
     <html>
       <head>
-        <title>Google OAuth Callback - Civic Connect</title>
+        <title>Google OAuth Callback - CityResolve-A-Smart-Civic-Issue-Management-Platform</title>
         <style>
           body { font-family: system-ui, sans-serif; background: #0f172a; color: #f8fafc; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; }
           .card { background: #1e293b; padding: 2rem; border-radius: 1rem; border: 1px solid #334155; text-align: center; max-width: 400px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5); }
@@ -941,7 +941,7 @@ app.get('/api/geocode/reverse', async (req, res) => {
 
     const nominatimUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=18&addressdetails=1`;
     const geoRes = await fetch(nominatimUrl, {
-      headers: { 'User-Agent': 'CivicConnect-App/1.0' },
+      headers: { 'User-Agent': 'CityResolve-App/1.0' },
       signal: controller.signal,
     });
     clearTimeout(timeoutId);
@@ -1375,6 +1375,6 @@ async function startServer() {
   }
 
   app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Civic Connect Server running at http://localhost:${PORT}`);
+    console.log(`CityResolve-A-Smart-Civic-Issue-Management-Platform Server running at http://localhost:${PORT}`);
   });
 }
