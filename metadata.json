@@ -1,5 +1,5 @@
 {
-  "name": "Civic Connect",
+  "name": "CityResolve-A-Smart-Civic-Issue-Management-Platform",
   "description": "Community issue reporting and management platform connecting citizens with local authorities for real-time tracking and resolution.",
   "requestFramePermissions": ["camera", "geolocation"],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
